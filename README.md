@@ -1,2 +1,2 @@
-ptintf Implementation Project
+printf Implementation Project
 ### _printf.c - produces output to stdout according to a format
