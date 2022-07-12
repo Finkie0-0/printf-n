@@ -8,10 +8,7 @@
 #include <limits.h>
 
 #define NULL_S "(null)"
-#define INIT_PARAMS                  \
-    {                                \
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0 \
-    }
+#define INIT_PARAMS {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 /**
  * struct formatter - struct for format specifier
@@ -22,8 +19,8 @@
 
 typedef struct formatter
 {
-    char *s;
-    int (*f)(va_list);
+	char *s;
+	int (*f)(va_list);
 } formatter_t;
 
 /* PROTOTYPES */
