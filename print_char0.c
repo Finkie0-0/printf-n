@@ -1,16 +1,15 @@
 #include "main.h"
-#include <unistd.h>
 
 /**
  * print_c - prints out characters.
- * @c: char to be printed.
+ * @args_ptr: argument pointer
  * Return: Always 1.
  */
 
 int print_c(va_list)
 {
 	char c;
-	char ch =(char)va_arg(c, int);
+	char ch = (char)va_arg(c, int);
 
 	_putchar(ch);
 	return (1);
@@ -18,9 +17,8 @@ int print_c(va_list)
 
 /**
  * print_s - prints out a string.
- * @s: string to be printed out.
  *
- * Return: number of char to be printed.
+ * Return: number chars printed.
  */
 
 int print_s(va_list)
@@ -36,4 +34,18 @@ int print_s(va_list)
 		_putchar(str[counter]);
 	}
 	return (counter);
+}
+
+/**
+ * print_percent - prints out character %.
+ *
+ * @args_ptr: argument pointer.
+ *
+ * Return: number chars printed.
+ */
+
+int print_percent(va_list args_ptr)
+{
+	(void)args_ptr;
+	return (_putchar('%'));
 }
