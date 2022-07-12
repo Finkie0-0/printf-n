@@ -43,9 +43,10 @@ int print_s(va_list)
  *
  * Return: number chars printed.
  */
-
-int print_percent(va_list args_ptr)
+ 
+int print_percent(va_list)
 {
-	(void)args_ptr;
+	char arg_ptr;
+	(void)arg_ptr;
 	return (_putchar('%'));
 }
