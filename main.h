@@ -29,6 +29,7 @@ typedef struct formatter
 int _printf(const char *format, ...);
 
 int (*select_formatter(char *s))(va_list);
+int get_formatter(char *s, va_list);
 
 /* characters and strings printing */
 

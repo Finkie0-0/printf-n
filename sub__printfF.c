@@ -23,3 +23,21 @@ int (*select_formatter(char *s))(va_list)
 	}
 	return (cp[i].f);
 }
+
+/**
+ * get_formatter- finds the format function
+ *
+ * @s: pointer to the string of the format.
+ * @args_ptr: argument pointer.
+ *
+ * Return: Always 0.
+ */
+
+int get_formatter(char *s, va_list args_ptr)
+{
+	int (*f)(va_list) = select_formatter(s);
+
+	if (f)
+		return (f(args_ptr));
+	return (0);
+}
