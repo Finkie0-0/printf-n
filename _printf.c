@@ -1,38 +1,49 @@
 #include "main.h"
-
 /**
- * _printf - write output to stdout, the standard output stream.
+ * _printf - produces output according to a format.
  *
- * @format: the format of the string.
- * Return: bytes to be printed after execution
+ * @format: is the character string. The format string is composed of zero
+ * or more directives.
+ * Return: number of characters printed (excluding the null byte used to end
+ * output strings).
  */
-
 int _printf(const char *format, ...)
 {
-	va_list arg_ptr;
-	int result = 0;
-	char *p, *start;
+	va_list args_ptr;
+	unsigned int i = 0;
+	unsigned int counter = 0;
+	int (*f)(va_list);
 
-	va_start(arg_ptr, format);
-	if (!format || (format[0] == '%' && format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
+	va_start(args_ptr, format);
+	if (format == NULL)
 		return (-1);
 
-	for (p = (char *)format; *p; p++)
+	while (format[i])
 	{
-		if (*p != '%')
+		for (; format[i] != '%' && format[i]; i++)
 		{
-			result += _putchar(*p);
+			_putchar(format[i]);
+			counter++;
+		}
+		if (!format[i])
+
+			return(counter);
+		f = select_formatter(&format[i + 1]);
+		if (f != NULL)
+		{
+			counter += f(args_ptr);
+			i += 2;
 			continue;
 		}
-		start = p;
-		p++;
+		if (!format[i + 1])
+			return (-1);
+		_putchar(format[i]);
+		counter++;
+		if (format[i + 1] == '%')
+			i += 2;
 		else
-			sum += get_formatter(p, args_ptr);
+			i++;
 	}
 	va_end(args_ptr);
-	return (result);
+	return (counter);
 }
-
-
