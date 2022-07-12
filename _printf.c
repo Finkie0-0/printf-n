@@ -10,42 +10,29 @@
 int _printf(const char *format, ...)
 {
 	va_list arg_ptr;
-	unsigned int i = 0;
-	unsigned int counter = 0;
-	int (*f)(va_list);
+	int result = 0;
+	char *p, *start;
 
 	va_start(arg_ptr, format);
-	if (format == NULL)
+	if (!format || (format[0] == '%' && format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
 
-	while (format[i])
+	for (p = (char *)format; *p; p++)
 	{
-		for (; format[i] != '%' && format[i]; i++)
+		if (*p != '%')
 		{
-			_putchar(format[i]);
-			counter++;
-		}
-		if (!format[i])
-
-			return(counter);
-		f = select_formatter(&format[i + 1]);
-		if (f != NULL)
-		{
-			counter += f(args_ptr);
-			i += 2;
+			result += _putchar(*p);
 			continue;
 		}
-		if (!format[i + 1])
-			return (-1);
-		_putchar(format[i]);
-		counter++;
-		if (format[i + 1] == '%')
-			i += 2;
+		start = p;
+		p++;
 		else
-			i++;
+			sum += get_formatter(p, args_ptr);
 	}
 	va_end(args_ptr);
-	return (counter);
+	return (result);
 }
 
 
