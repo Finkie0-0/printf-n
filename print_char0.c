@@ -37,3 +37,17 @@ int print_s(va_list)
 	}
 	return (counter);
 }
+
+/**
+ * print_percent - prints out a string 
+ * @arg_ptr: argument pointer.
+ *
+ * Return: number of chars printed.
+ */
+int print_percent(va_list)
+{
+	char arg_ptr;
+
+	(void)arg_ptr;
+	return (_putchar('%'));
+}
